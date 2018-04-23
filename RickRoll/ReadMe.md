@@ -1,0 +1,1 @@
+This project sets the Mac OS to full volume before immediately opening Rick Astleys famous "Never Going To Give You Up"
