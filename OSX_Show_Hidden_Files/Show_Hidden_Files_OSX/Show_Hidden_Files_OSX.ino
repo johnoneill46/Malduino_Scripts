@@ -3,40 +3,35 @@
 
 int pause = 400;
 
-void typeKey(int key){
-  Keyboard.press(key);
-  delay(5);
-  Keyboard.release(key);
+void setup(){
+  Keyboard.begin();
+  Mouse.begin();
+  openSpotlight();
+  Keyboard.print("terminal");
+  delayAndEnter();
+  Keyboard.print("defaults write com.apple.finder AppleShowAllFiles true");
+  delayAndEnter();
+  killAndRestartFinder();
+  clearup();
+  Keyboard.end();
 }
 
-void setup(){
-    Keyboard.begin();
-    Mouse.begin();
-  
-    openSpotlight();
-    Keyboard.print("terminal");
+void typeKey(int key){
+   Keyboard.press(key);
+   delay(5);
+   Keyboard.release(key);
+}
 
+void delayAndEnter(){
     delay(pause);
     typeKey(KEY_RETURN);
-
     delay(pause);
-    Keyboard.print("defaults write com.apple.finder AppleShowAllFiles true");
-
-    delay(pause);
-    typeKey(KEY_RETURN);
-
-    killAndRestartFinder();
-    clearup();
-    
-    Keyboard.end();
 }
 
 void killAndRestartFinder(){
-    delay(pause);
     Keyboard.print("killall Finder");
     delay(pause);
     typeKey(KEY_RETURN);
-
     openSpotlight();
     Keyboard.print("Finder");    
     delay(pause);
@@ -52,12 +47,7 @@ void openSpotlight(){
 }
 
 void clearup(){
-    delay(pause);
-    Keyboard.press(KEY_LEFT_GUI);
-    Keyboard.press(' ');
-    Keyboard.releaseAll();
-
-    delay(pause);
+    openSpotlight();
     Keyboard.print("terminal");
     delay(pause);
     typeKey(KEY_RETURN);
