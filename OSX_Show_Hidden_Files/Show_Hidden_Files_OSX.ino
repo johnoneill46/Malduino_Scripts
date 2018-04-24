@@ -1,37 +1,28 @@
-
 #include "Keyboard.h"
 #include "Mouse.h"
 
-int defaultCharDelay = 5;
+int pause = 400;
 
 void typeKey(int key){
   Keyboard.press(key);
-  delay(defaultCharDelay);
+  delay(5);
   Keyboard.release(key);
 }
 
 void setup(){
-   
     Keyboard.begin();
     Mouse.begin();
-      
-    delay(1000);
-
-    delay(defaultDelay);
-    Keyboard.press(KEY_LEFT_GUI);
-    Keyboard.press(' ');
-    Keyboard.releaseAll();
-
-    delay(defaultDelay);
+  
+    openSpotlight();
     Keyboard.print("terminal");
 
-    delay(defaultDelay);
+    delay(pause);
     typeKey(KEY_RETURN);
 
-    delay(200);
+    delay(pause);
     Keyboard.print("defaults write com.apple.finder AppleShowAllFiles true");
 
-    delay(defaultDelay);
+    delay(pause);
     typeKey(KEY_RETURN);
 
     killAndRestartFinder();
@@ -41,44 +32,43 @@ void setup(){
 }
 
 void killAndRestartFinder(){
-    delay(200);
+    delay(pause);
     Keyboard.print("killall Finder");
-    delay(defaultDelay);
+    delay(pause);
     typeKey(KEY_RETURN);
 
-    delay(defaultDelay);
-    Keyboard.press(KEY_LEFT_GUI);
-    Keyboard.press(' ');
-    Keyboard.releaseAll();
-
-    delay(200);
+    openSpotlight();
     Keyboard.print("Finder");    
-    delay(defaultDelay);
+    delay(pause);
     typeKey(KEY_RETURN);
 }
 
-void delay(){
-    delay(1000);
+void openSpotlight(){
+    delay(pause);
+    Keyboard.press(KEY_LEFT_GUI);
+    Keyboard.press(' ');
+    Keyboard.releaseAll();
+    delay(pause);
 }
 
 void clearup(){
-    delay(defaultDelay);
+    delay(pause);
     Keyboard.press(KEY_LEFT_GUI);
     Keyboard.press(' ');
     Keyboard.releaseAll();
 
-    delay(defaultDelay);
+    delay(pause);
     Keyboard.print("terminal");
-    delay(defaultDelay);
+    delay(pause);
     typeKey(KEY_RETURN);
 
-    delay(defaultDelay);
+    delay(pause);
     Keyboard.print("clear");
     typeKey(KEY_RETURN);
 
-    delay(defaultDelay);
+    delay(pause);
     Keyboard.print("killall Terminal");
-    delay(defaultDelay);
+    delay(pause);
     typeKey(KEY_RETURN);
 }
 
