@@ -1,7 +1,8 @@
+
 #include "Keyboard.h"
 #include "Mouse.h"
 
-int pause = 250;
+int pause = 500;
 
 void typeKey(int key){
   Keyboard.press(key);
@@ -12,7 +13,7 @@ void typeKey(int key){
 void setup(){
     Keyboard.begin();
     Mouse.begin();
-    delay(500);
+    delay(pause);
     openSpotlight();
     input("terminal");
     input("osascript -e 'set volume 7'");
